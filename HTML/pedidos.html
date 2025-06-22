@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Sistema de Gestão</title>
+    <script src="https://cdn.tailwindcss.com"></script> 
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+    <!-- Sidebar -->
+    <aside class="fixed inset-y-0 left-0 z-20 w-64 bg-gray-800 shadow-lg transition-transform -translate-x-full sm:translate-x-0"
+        x-data="{ open: false }" @click.away="open = false">
+        <div class="p-4">
+            <h1 class="text-white text-xl font-bold">Sistema de Gestão</h1>
+        </div>
+        <nav class="mt-6">
+            <a href="home.html" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 rounded-md">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3"></path>
+                </svg>
+                Dashboard
+            </a>
+            <a href="pedidos.html" class="flex items-center px-6 py-3 bg-gray-700 rounded-md text-white">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                </svg>
+                Pedidos
+            </a>
+            <a href="estoque.html" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 rounded-md">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                </svg>
+                Estoques
+            </a>
+            <a href="produto.html" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 rounded-md">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+                Produtos
+            </a>
+            <a href="fornecedores.html" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 rounded-md">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Fornecedores
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <div class="ml-0 transition-all duration-300 sm:ml-64">
+        <!-- Cabeçalho -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 md:px-8 flex justify-between items-center">
+                <button class="mr-4 p-2 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none sm:hidden"
+                    @click="open = !open">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div class="flex items-center">
+                    <img class="h-8 w-8 rounded-full" src="https://picsum.photos/200/300"  alt="User avatar">
+                    <span class="ml-3 text-gray-700">Bem-vindo, [Nome do Usuário]!</span>
+<!--                     <button class="ml-6 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
+                        Sair
+                    </button> -->
+                    <a href="../index.html" class="ml-6 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
+                        Sair
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Título da página -->
+        <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 md:px-8">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">Gerenciamento de Pedidos</h1>
+                <!-- <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                    Novo Pedido
+                </button> -->
+                <a href="criarPedido.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                    Novo Pedido
+                </a>
+            </div>
+
+            <!-- Filtros -->
+            <div class="bg-white shadow rounded-lg p-4 mb-6">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+                    <div>
+                        <label for="status-filter" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select id="status-filter" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <option>Todos</option>
+                            <option>Pendente</option>
+                            <option>Em Trânsito</option>
+                            <option>Recebido</option>
+                            <option>Cancelado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="origin-filter" class="block text-sm font-medium text-gray-700 mb-1">Origem</label>
+                        <select id="origin-filter" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <option>Todos</option>
+                            <option>Setor A</option>
+                            <option>Setor B</option>
+                            <option>Setor C</option>
+                            <option>Setor D</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="destination-filter" class="block text-sm font-medium text-gray-700 mb-1">Destino</label>
+                        <select id="destination-filter" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <option>Todos</option>
+                            <option>Setor A</option>
+                            <option>Setor B</option>
+                            <option>Setor C</option>
+                            <option>Setor D</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="date-filter" class="block text-sm font-medium text-gray-700 mb-1">Data</label>
+                        <input type="date" id="date-filter" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabela de Pedidos -->
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Origem</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destino</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Itens</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prioridade</th>
+                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Exemplo de pedido 1 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#PED-1001</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15/09/2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Setor A</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Setor B</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Enviado
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        Média
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-indigo-600 hover:text-indigo-900 mr-3">Ver</button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3">Atualizar</button>
+                                    <button class="text-red-600 hover:text-red-900">Excluir</button>
+                                </td>
+                            </tr>
+                            <!-- Exemplo de pedido 2 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#PED-1002</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">16/09/2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Setor C</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Setor A</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                        Recebido
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Alta
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-indigo-600 hover:text-indigo-900 mr-3">Ver</button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3">Atualizar</button>
+                                    <button class="text-red-600 hover:text-red-900">Excluir</button>
+                                </td>
+                            </tr>
+                            <!-- Exemplo de pedido 3 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#PED-1003</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">17/09/2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Setor B</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Setor C</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                                        Pendente
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">6</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Baixa
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-indigo-600 hover:text-indigo-900 mr-3">Ver</button>
+                                    <button class="text-green-600 hover:text-green-900 mr-3">Atualizar</button>
+                                    <button class="text-red-600 hover:text-red-900">Excluir</button>
+                                </td>
+                            </tr>
+                            <!-- Adicione mais linhas conforme necessário -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginação -->
+                <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                    <div class="flex-1 flex justify-between sm:hidden">
+                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
+                            Anterior
+                        </button>
+                        <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
+                            Próximo
+                        </button>
+                    </div>
+                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-sm text-gray-700">
+                                Mostrando 
+                                <span class="font-medium">1</span> 
+                                até 
+                                <span class="font-medium">3</span> 
+                                de 
+                                <span class="font-medium">3</span> 
+                                resultados
+                            </p>
+                        </div>
+                        <div>
+                            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <span class="sr-only">Anterior</span>
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    1
+                                </button>
+                                <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <span class="sr-only">Próximo</span>
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
